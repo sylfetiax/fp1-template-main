@@ -4,7 +4,7 @@ import com.tkroman.kpi.y2022.l1
 
 import scala.annotation.targetName
 
-case class Rational(private val nom: Int, private val denom: Int) {
+case class Rational private (val nom: Int, val denom: Int) {
   def ToString: String = nom + "/" + denom
 
   def add(that: Rational) =
@@ -42,5 +42,5 @@ object Rational {
 }
 
 @main def run() =
-  println(Rational(10, -2))
+  println(Rational(25, 40))
 
