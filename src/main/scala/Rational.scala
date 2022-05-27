@@ -41,22 +41,24 @@ def normalize(r: Rational): Rational = {
 
 def floor(x: Double): Double = java.lang.Math.floor(x)
 
+def reciprocalRational(r: Rational): Rational = Rational(r.denom, r.nom)
+
 def continuedFraction(r: Rational): ListBuffer[Int] = {
   var listFraction = new ListBuffer[Int]()
-  listFraction.append(r.nom / r.denom)
-  recursiveFraction(r.nom.toDouble / r.denom.toDouble, 1, listFraction)
+  recursiveFraction(r, listFraction)
 }
 
-def recursiveFraction(prev: Double, curr: Double, list: ListBuffer[Int]): ListBuffer[Int] = {
-  val next: Double = prev % curr
-  if (BigDecimal(next).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble != 0) {
-    list.append(floor(curr / next).toInt)
-    recursiveFraction(curr, next, list)
+def recursiveFraction(r: Rational, list: ListBuffer[Int]): ListBuffer[Int] = {
+  val simplified: Rational = add(r, Rational(-r.nom / r.denom, 1))
+  list.append(r.nom / r.denom)
+  if (simplified.nom != 0) {
+    val reciprocal: Rational = reciprocalRational(simplified)
+    recursiveFraction(reciprocal, list)
   } else list
 }
 
 
 @main def run() =
-  println(continuedFraction(Rational(314, 100)))
+  println(continuedFraction(Rational(27, 10)))
 
 
