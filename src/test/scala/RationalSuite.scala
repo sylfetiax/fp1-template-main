@@ -36,10 +36,10 @@ class RationalSuite extends FunSuite {
     val actual = gcd(0, 5)
     assertEquals(actual, expected)
   }
-  test("gcd with negative") {
+  test( "gcd with negative") {
     val expected = -5
     val actual = gcd(-5, 0)
-    assertEquals(actual, expected)
+    assertEquals(actual,expected)
   }
   test("gcd") {
     val expected = 1
@@ -47,37 +47,37 @@ class RationalSuite extends FunSuite {
     assertEquals(actual, expected)
   }
   //add
-  test("add negative and positive") {
+  test( "add negative and positive") {
     val expected = Rational(1, 6)
-    val actual = Rational(-1, 3).add(Rational(1, 2))
+    val actual = add(Rational(-1, 3), Rational(1, 2))
     assertEquals(actual, expected)
   }
   test("add negative and negative") {
     val expected = Rational(-5, 6)
-    val actual = Rational(-1, 3).add(Rational(-1, 2))
+    val actual = add(Rational(-1, 3), Rational(-1, 2))
     assertEquals(actual, expected)
   }
   test("add zero") {
     val expected = Rational(4, 3)
-    val actual = Rational(4, 3).add(Rational(0, 4))
+    val actual = add(Rational(4,3), Rational(0, 4))
     assertEquals(actual, expected)
   }
   //mul
   test("mul zero") {
     val expected = Rational(0, 1)
-    val actual = Rational(0, 21).mul(Rational(43, 2))
+    val actual = mul(Rational(0, 21), Rational(43, 2))
     assertEquals(actual, expected)
   }
   test("mul negative") {
     val expected = Rational(-1, 6)
-    val actual = Rational(-1, 2).mul(Rational(1, 3))
+    val actual = mul(Rational(-1, 2), Rational(1, 3))
     assertEquals(actual, expected)
   }
   //to string
   test("to string") {
     val expected = "-1/2"
     val r = Rational(1, -2)
-    val actual = r.ToString
+    val actual = rationalToString(r)
     assertEquals(actual, expected)
   }
 }
